@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-
+//adding a comment
 const ModalComponent = (props) => {
   const [text, setText] = useState("");
 
