@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     width: 18,
     height: 18,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth: 1, 
     borderColor: "pink",
     marginLeft: 10,
   },
