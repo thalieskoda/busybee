@@ -10,7 +10,6 @@ import {
 
 //adding a comment
 const ModalComponent = (props) => {
-
   const [text, setText] = useState("");
 
   const addNewItem = () => {
@@ -20,7 +19,7 @@ const ModalComponent = (props) => {
     setText("");
     props.hideModal();
   };
-  
+
   return (
     <Modal animationType="fade" visible={true} transparent={true}>
       <TouchableOpacity
@@ -35,7 +34,7 @@ const ModalComponent = (props) => {
             onChangeText={setText}
             placeholder="Enter new item"
             style={styles.input}
-          ></TextInput>
+          />
           <TouchableOpacity style={styles.button} onPress={() => addNewItem()}>
             <Text>Add item</Text>
           </TouchableOpacity>

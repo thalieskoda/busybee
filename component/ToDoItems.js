@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 //Supabase
-import { supabase } from "../supabase/supabase";
+import { supabase } from "../supabase/Supabase";
 
 const ToDoItems = (props) => {
   let listItem = props.index;

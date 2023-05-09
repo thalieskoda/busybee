@@ -2,49 +2,44 @@ import React, { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-
+import "react-native-url-polyfill/auto";
+import { Session } from "@supabase/supabase-js";
 //components
-import supabase from "./supabase/supabase";
+import supabase from "./supabase/Supabase";
 import HomeScreen from "./component/HomeScreen";
-import LoginScreen from "./component/LoginScreen";
+import UserAuth from "./component/UserAuth";
+import Account from "./component/Account";
 
 const App = () => {
-  //Code for the Auth0 coming from Supabase documentation;
-  const [session, setSession] = useState(null);
+  const [session, setSession] = (useState < Session) | (null > null);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
 
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
-    return () => subscription.unsubscribe();
   }, []);
-
-  if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
-  } else {
-    return (
-      <SafeAreaView style={styles.mainView}>
-        {/* Splash Screen eventually */}
-        <View>
-          {/* <LoginScreen/> */}
-          <HomeScreen />
-        </View>
-      </SafeAreaView>
-    );
-  }
+  return (
+    <SafeAreaView style={styles.mainView}>
+      {/* Splash Screen eventually */}
+      <View>
+        {session && session.user ? (
+          <Account key={session.user.id} session={session} />
+        ) : (
+          <UserAuth />
+        )}
+      </View>
+    </SafeAreaView>
+  );
 };
+
+export default App;
 
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,
   },
 });
-
-export default App;

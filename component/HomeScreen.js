@@ -9,10 +9,10 @@ import {
 } from "react-native";
 
 //supabase
-import { supabase } from "../supabase/supabase";
+import { supabase } from "../supabase/Supabase";
 
 //components
-import ToDoItems from "../component/ToDoItems"
+import ToDoItems from "../component/ToDoItems";
 import ModalComponent from "../component/ModalComponent";
 
 const HomeScreen = () => {
