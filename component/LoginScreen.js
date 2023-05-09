@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { Auth } from "@supabase/auth-ui-react";
 
+//Login Screen - authenticator
 const LoginScreen = ()=> {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { signIn } = Auth();
   
+    //code from Supabase
     const handleLogin = async () => {
       const { error } = await signIn({ email, password });
       if (error) {

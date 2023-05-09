@@ -9,6 +9,7 @@ import HomeScreen from "./component/HomeScreen";
 import LoginScreen from "./component/LoginScreen";
 
 const App = () => {
+  //Code for the Auth0 coming from Supabase documentation;
   const [session, setSession] = useState(null);
 
   useEffect(() => {
@@ -30,8 +31,9 @@ const App = () => {
   } else {
     return (
       <SafeAreaView style={styles.mainView}>
+        {/* Splash Screen eventually */}
         <View>
-          <LoginScreen/>
+          {/* <LoginScreen/> */}
           <HomeScreen />
         </View>
       </SafeAreaView>

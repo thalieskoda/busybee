@@ -7,17 +7,20 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+
 //adding a comment
 const ModalComponent = (props) => {
+
   const [text, setText] = useState("");
 
   const addNewItem = () => {
     if (text.length === 0) return;
-//SaveNewItem = function to add the new item in the array
+    //SaveNewItem = function to add the new item in the array
     props.saveNewItem(text);
     setText("");
     props.hideModal();
   };
+  
   return (
     <Modal animationType="fade" visible={true} transparent={true}>
       <TouchableOpacity
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
   heading: {
     fontWeight: "bold",
     fontSize: 15,
-    marginBottom:10,
+    marginBottom: 10,
   },
   input: {
     width: "90%",
