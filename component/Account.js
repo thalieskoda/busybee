@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { supabase } from "../lib/supabase";
-import { StyleSheet, View, Alert } from "react-native";
-import { Button, Input } from "react-native-elements";
+import { supabase } from "../supabase/Supabase";
+import { StyleSheet, View, Alert, TextInput, TouchableOpacity } from "react-native";
+
 
 export default function Account({ session }) {
   const [loading, setLoading] = useState(true);
@@ -70,17 +70,17 @@ export default function Account({ session }) {
   return (
     <View style={styles.container}>
       <View style={[styles.verticallySpaced, styles.mt20]}>
-        <Input label="Email" value={session?.user?.email} disabled />
+        <TextInput label="Email" value={session?.user?.email} disabled />
       </View>
       <View style={styles.verticallySpaced}>
-        <Input
+        <TextInput
           label="Username"
           value={username || ""}
           onChangeText={(text) => setUsername(text)}
         />
       </View>
       <View style={styles.verticallySpaced}>
-        <Input
+        <TextInput
           label="Website"
           value={website || ""}
           onChangeText={(text) => setWebsite(text)}
@@ -98,7 +98,7 @@ export default function Account({ session }) {
       </View>
 
       <View style={styles.verticallySpaced}>
-        <Button title="Sign Out" onPress={() => supabase.auth.signOut()} />
+        <TouchableOpacity title="Sign Out" onPress={() => supabase.auth.signOut()} />
       </View>
     </View>
   );

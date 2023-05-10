@@ -11,7 +11,8 @@ import UserAuth from "./component/UserAuth";
 import Account from "./component/Account";
 
 const App = () => {
-  const [session, setSession] = (useState < Session) | (null > null);
+  const [session, setSession] = useState(null);
+
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
