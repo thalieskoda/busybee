@@ -6,16 +6,15 @@ import {
   TouchableOpacity,
   TextInput,
   Text,
-  Image
+  Image,
 } from "react-native";
-import { supabase } from "../supabase/Supabase";
 
-const UserAuth = () => {
+const UserAuth = ({ supabase }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function signInWithEmail() {
+  const signInWithEmail = async () => {
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({
       email: email,
@@ -24,9 +23,11 @@ const UserAuth = () => {
 
     if (error) Alert.alert(error.message);
     setLoading(false);
-  }
+    setEmail("");
+    setPassword("");
+  };
 
-  async function signUpWithEmail() {
+  const signUpWithEmail = async () => {
     setLoading(true);
     const { error } = await supabase.auth.signUp({
       email: email,
@@ -35,15 +36,15 @@ const UserAuth = () => {
 
     if (error) Alert.alert(error.message);
     setLoading(false);
-  }
+
+    setEmail("");
+    setPassword("");
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Busybee</Text>
-       <Image
-            source={require("../assets/honey2.webp")}
-            style={styles.image}
-          />
+      <Image source={require("../assets/honey2.webp")} style={styles.image} />
       <View style={styles.input}>
         <TextInput
           label="Email"
@@ -97,17 +98,17 @@ export default UserAuth;
 
 const styles = StyleSheet.create({
   container: {
-  //  marginTop: "30%",
+    //  marginTop: "30%",
     padding: 12,
     display: "flex",
     justifyContent: "center",
     width: "100%",
     alignItems: "center",
   },
-  title:{
-    fontWeight:"bold",
+  title: {
+    fontWeight: "bold",
     fontSize: 30,
-    marginBottom:300
+    marginBottom: 300,
   },
   input: {
     padding: 10,
@@ -116,7 +117,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: "100%",
     borderColor: "rgba(0,0,0,0.20)",
-    backgroundColor:"rgba(255, 255, 255, 0.5)"    
+    backgroundColor: "rgba(255, 255, 255, 0.5)",
   },
   button: {
     width: 100,
@@ -143,9 +144,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     paddingTop: 15,
   },
-  image:{
-    zIndex:-1,
+  image: {
+    zIndex: -1,
     position: "absolute",
-    top:150
-  }
+    top: 150,
+  },
 });

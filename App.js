@@ -13,7 +13,6 @@ import Account from "./component/Account";
 const App = () => {
   const [session, setSession] = useState(null);
 
-
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
@@ -23,6 +22,7 @@ const App = () => {
       setSession(session);
     });
   }, []);
+
   return (
     <SafeAreaView style={styles.mainView}>
       {/* Splash Screen eventually */}
@@ -31,7 +31,7 @@ const App = () => {
           <Account key={session.user.id} session={session} />
         ) : (
           <View style={styles.authContainer}>
-          <UserAuth />
+            <UserAuth supabase={supabase} />
           </View>
         )}
       </View>
@@ -46,7 +46,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F9FD",
     flex: 1,
   },
-  authContainer:{
-
-  }
+  authContainer: {},
 });
