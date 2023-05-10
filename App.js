@@ -30,7 +30,9 @@ const App = () => {
         {session && session.user ? (
           <Account key={session.user.id} session={session} />
         ) : (
+          <View style={styles.authContainer}>
           <UserAuth />
+          </View>
         )}
       </View>
     </SafeAreaView>
@@ -41,6 +43,10 @@ export default App;
 
 const styles = StyleSheet.create({
   mainView: {
+    backgroundColor: "#F8F9FD",
     flex: 1,
   },
+  authContainer:{
+
+  }
 });
